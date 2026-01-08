@@ -37,6 +37,7 @@ public class Snake {
 		 * Create variables for the next X and Y location of the snake's head.
 		 * Initialize them to the current X and Y locations.
 		 */
+		
 
 		/*
 		 * Use a switch statement to check on the currentDirection of the snake and
