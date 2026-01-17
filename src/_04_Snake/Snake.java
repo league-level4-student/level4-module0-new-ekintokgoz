@@ -69,7 +69,7 @@ public class Snake {
 		 * Use a loop starting at the end of the ArrayList and stop before the head of
 		 * the snake (index 0) or you will go out of bounds.
 		 */
-		for(int i = snake.size(); i > 0; i--) {
+		for(int i = snake.size()-1; i > 0; i--) {
 			snake.get(i).setLocation(snake.get(i-1).getLocation());
 		}
 
@@ -93,7 +93,7 @@ public class Snake {
 		 * Hint: Use the isNotOppositeDirection method.
 		 */
 		if(isNotOppositeDirection(direction) && canMove) {
-			currentDirection.equals(direction);
+			currentDirection = direction;
 			canMove = false;
 		}
 
@@ -135,9 +135,10 @@ public class Snake {
 		 * Location created in step 2 for the Location and the BODY_SIZE constant for
 		 * the size.
 		 */
-
+		 head = new SnakeSegment(newHeadLoc, BODY_SIZE);
+		
 		// Add the head to the snake.
-
+		 snake.add(head);
 	}
 
 	public boolean isOutOfBounds() {
@@ -146,7 +147,14 @@ public class Snake {
 		 * Complete the method so it returns true if the head of the snake is outside of
 		 * the window and false otherwise.
 		 */
-
+		
+		if(head.getLocation().getX() > SnakeGame.WIDTH - 1 || head.getLocation().getX() < 0) {
+			System.out.println("a");
+			return true;
+		}else if(head.getLocation().getY() > SnakeGame.HEIGHT - 1 || head.getLocation().getY() < 0) {
+			System.out.println("b");
+			return true;
+		}
 		return false;
 	}
 
@@ -156,7 +164,12 @@ public class Snake {
 		 * Complete the method so it returns true if the head is located in the same
 		 * location as any other body segment.
 		 */
-
+		for(int i = 1; i < snake.size(); i++) {
+			if(snake.get(i).getLocation().equals(getHeadLocation())) {
+				return true;
+			}
+		}
+		
 		return false;
 	}
 
@@ -166,7 +179,13 @@ public class Snake {
 		 * Complete the method so it returns true if the passed in location is located
 		 * on the snake.
 		 */
-
+		for(int i = 0; i < snake.size(); i++) {
+			if(snake.get(i).getLocation().equals(loc)) {
+				return true;
+			}
+		}
+		
+		
 		return false;
 	}
 
